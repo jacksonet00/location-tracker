@@ -1,0 +1,1 @@
+export const GEOFENCING_RADIUS = 100;
