@@ -2,6 +2,9 @@ import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import * as Location from 'expo-location';
 import { LocationAccuracy, LocationOptions } from 'expo-location';
+import { setFirestoreDocument } from "../util/firebase/setFirestoreDocument";
+import { CurrentLocation } from "../types/CurrentLocation";
+import { doc, getFirestore } from "firebase/firestore";
 
 interface CurrentLocationCollectorProps {
     location: Location.LocationObject | null;
@@ -15,7 +18,9 @@ const CurrentLocationCollector: React.FC<CurrentLocationCollectorProps> = ({ loc
             mayShowUserSettingsDialog: true,
             timeInterval: 0,
         };
-        return Location.getCurrentPositionAsync(options);
+        const location = await Location.getCurrentPositionAsync(options);
+        setFirestoreDocument<CurrentLocation>(doc(getFirestore(), 'current-location/42069'), { latitude: location.coords.latitude, longitude: location.coords.longitude });
+        return location;
     }
 
     if (!location) {
