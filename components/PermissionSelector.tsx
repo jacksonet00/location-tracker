@@ -4,15 +4,15 @@ import BackgroundLocationPermissionRequester from "./BackgroundLocationPermissio
 import ForegroundLocationPermissionRequester from "./ForegroundLocationPermissionRequester";
 
 interface PermissionSelectorProps {
-    onClose: () => void;
+    onContinue: () => void;
 }
 
-const PermissionSelector: React.FC<PermissionSelectorProps> = ({ onClose }) => {
+const PermissionSelector: React.FC<PermissionSelectorProps> = ({ onContinue }) => {
     return (
         <>
             <ForegroundLocationPermissionRequester />
             <BackgroundLocationPermissionRequester />
-            <Button title="Continue" onPress={onClose} />
+            <Button title="Continue" onPress={onContinue} />
         </>
     );
 };

@@ -38,7 +38,7 @@ export default function App() {
       return <Text>Loading...</Text>;
     }
     if (!permissionResponse || !permissionResponse.granted) {
-      return <PermissionSelector onClose={async () => await refreshPermissions()} />;
+      return <PermissionSelector onContinue={async () => await refreshPermissions()} />;
     }
     return (
       <View>
